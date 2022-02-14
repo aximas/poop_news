@@ -1,0 +1,14 @@
+.header {
+  padding: 12px 0;
+  margin-bottom: 60px;
+}
+
+.menu {
+  margin-left: auto;
+
+  &-item {
+    &:not(:last-child) {
+      margin-right: 25px;
+    }
+  }
+}

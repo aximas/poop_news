@@ -1,0 +1,14 @@
+.pagination {
+  display: flex;
+
+  &-number {
+    opacity: .7;
+    &-current {
+      opacity: 1;
+    }
+
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+  }
+}
