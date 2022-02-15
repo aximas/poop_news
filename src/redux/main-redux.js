@@ -7,11 +7,11 @@ let initialState = {
     pageSize: 10,
     pageNum: 1,
     totalCount: 0,
-    country: 'us'
+    country: 'us',
 }
 
 const mainReducer = (state = initialState, action) => {
-    switch(action.type) {
+    switch (action.type) {
         case SET_DATA:
             return {
                 ...state, data: action.news
@@ -24,8 +24,10 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state, totalCount: action.totalCount
             }
+        default: {
+            return state
+        }
     }
-    return state
 }
 
 export const setData = (news) => ({type: SET_DATA, news});

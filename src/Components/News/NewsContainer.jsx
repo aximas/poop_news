@@ -1,12 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
 import axios from "axios";
-import Main from "./Main";
 import {setData, setCurrentPageNum, setTotalCount} from "../../redux/main-redux";
+import News from "./News";
 
-class MainContainer extends React.Component {
+class NewsContainer extends React.Component {
     componentDidMount() {
-        axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=${this.props.pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
+        axios.get(`https://newsapi.org/v2/everything?sources=CNN,ABC,WDRB,daily&sortBy=popularity&pageSize=${this.props.pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
                 console.log(response.data);
                 this.props.setData(response.data.articles);
@@ -22,7 +22,7 @@ class MainContainer extends React.Component {
 
     onPageChanged = (page) => {
         this.props.setCurrentPageNum(page);
-        axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=${this.props.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_API_KEY}`)
+        axios.get(`https://newsapi.org/v2/everything?sources=CNN,ABC,WDRB,daily&sortBy=popularity&pageSize=${this.props.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
                 console.log(response.data);
                 this.props.setData(response.data.articles);
@@ -30,12 +30,13 @@ class MainContainer extends React.Component {
     }
 
     render() {
-        return <Main data={this.props.data}
+        return <News data={this.props.data}
                      classNameChanger={this.classNameChanger}
                      pageSize={this.props.pageSize}
                      totalCount={this.props.totalCount}
                      pageNum={this.props.pageNum}
                      onPageChanged={this.onPageChanged}
+                     onEndpointsChanged={this.onEndpointsChanged}
         />;
     }
 }
@@ -50,4 +51,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setData, setCurrentPageNum, setTotalCount})(MainContainer)
+export default connect(mapStateToProps, {setData, setCurrentPageNum, setTotalCount})(NewsContainer);

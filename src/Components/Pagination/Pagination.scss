@@ -1,0 +1,31 @@
+.pagination {
+  display: flex;
+
+  &-number {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 14px;
+    line-height: 1.5;
+    cursor: pointer;
+    opacity: .7;
+    color: #161616;
+
+    &-current {
+      background-color: #161616;
+      color: #f5f5f5;
+      cursor: default;
+      opacity: 1;
+    }
+
+    &:not(:last-child) {
+      margin-right: 15px;
+    }
+
+    &:hover {
+      opacity: .9;
+    }
+  }
+}

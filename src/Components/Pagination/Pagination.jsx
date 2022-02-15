@@ -3,7 +3,7 @@ import './Pagination.scss';
 
 const Pagination = (props) => {
 
-    let pagesNum = Math.round(props.totalCount / props.pageSize);
+    let pagesNum = Math.round(props.totalCount / props.pageSize) > 20 ? 20 : Math.round(props.totalCount / props.pageSize);
 
     const pagesNumArr = () => {
         return new Array(pagesNum).fill(1).map((num, i) => num + i)

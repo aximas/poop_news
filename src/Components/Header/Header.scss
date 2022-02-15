@@ -3,12 +3,32 @@
   margin-bottom: 60px;
 }
 
-.menu {
+.site-menu {
   margin-left: auto;
+}
 
+.upper-menu {
+  margin-bottom: 32px;
+  justify-content: flex-end;
+
+  &-item {
+
+  }
+}
+
+.upper-menu, .menu {
   &-item {
     &:not(:last-child) {
       margin-right: 25px;
     }
   }
+}
+
+.menu {
+  &-item {
+    &-link {
+      text-transform: uppercase;
+    }
+  }
+
 }

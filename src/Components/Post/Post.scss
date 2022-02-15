@@ -29,6 +29,7 @@
     object-position: top;
     margin-top: auto;
     margin-bottom: 18px;
+    border-radius: 12px;
 
     &-large {
       max-height: 280px;
@@ -54,5 +55,8 @@
 
   &-published-data {
     color: #151519;
+  }
+  &-published-date {
+    margin-right: 8px;
   }
 }
