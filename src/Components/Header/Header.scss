@@ -28,6 +28,16 @@
   &-item {
     &-link {
       text-transform: uppercase;
+      cursor: pointer;
+
+      &-current {
+        cursor: default;
+        opacity: .7;
+      }
+
+      &:hover {
+        opacity: .7;
+      }
     }
   }
 

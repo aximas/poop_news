@@ -1,6 +1,8 @@
 import React from "react";
 import Preloader from "../../common/Preloader/Preloader";
 import "./Post.scss"
+import PopUpNews from "../PopUp/PopUp";
+import imgPlaceholder from "../../files/img/img_placeholder.png";
 
 const Post = (props) => {
     if (!props.posts) {
@@ -10,23 +12,21 @@ const Post = (props) => {
     }
     const post = props.posts.map((post, i) => {
         return <article className={`d-flex d-flex-d-column post ${props.classNameChanger([0, 1, 5, 6], i)('post-large')}`} key={i}>
-            <h3 className="post-title">
-                <a href={post.url} target="_blank">
-                    {post.title}
-                </a>
-            </h3>
+            <PopUpNews {...post}>
+                {post.title}
+            </PopUpNews>
             <div className="post-body">
                 <p className="post-description">
                     {post.description}
                 </p>
             </div>
-            <img src={post.urlToImage} alt={post.title} className={`post-thumbnail ${props.classNameChanger([0, 1, 5, 6], i)('post-thumbnail-large')}`}/>
+            <img src={post.urlToImage ?? imgPlaceholder} alt={post.title} className={`post-thumbnail ${props.classNameChanger([0, 1, 5, 6], i)('post-thumbnail-large')}`}/>
             <div className="post-footer">
                 <span className="post-footer-info post-author">
-                    {post.author}
+                    {post.author ? post.author + " - " : null}
                 </span>
                 <span className="post-footer-info post-source">
-                   - "{post.source.name}"
+                   "{post.source.name}"
                 </span>
                 <span className="post-footer-info post-delimiter">
                    /

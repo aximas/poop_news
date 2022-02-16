@@ -1,6 +1,8 @@
 const SET_DATA = 'SET-DATA';
 const SET_CURRENT_PAGE_NUM = 'SET-PAGE-NUM';
-const SET_TOTAL_COUNT = 'SER-TOTAL-COUNT';
+const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
+const SET_PAGE_SIZE = 'SET-PAGE-SIZE';
+const SET_CATEGORY = 'SET-CATEGORY';
 
 let initialState = {
     data: null,
@@ -8,6 +10,7 @@ let initialState = {
     pageNum: 1,
     totalCount: 0,
     country: 'us',
+    category: 'general'
 }
 
 const mainReducer = (state = initialState, action) => {
@@ -24,6 +27,14 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state, totalCount: action.totalCount
             }
+        case SET_PAGE_SIZE:
+            return {
+                ...state, pageSize: action.pageSize
+            }
+        case SET_CATEGORY:
+            return {
+                ...state, category: action.category
+            }
         default: {
             return state
         }
@@ -33,5 +44,7 @@ const mainReducer = (state = initialState, action) => {
 export const setData = (news) => ({type: SET_DATA, news});
 export const setCurrentPageNum = (pageNum) => ({type: SET_CURRENT_PAGE_NUM, pageNum});
 export const setTotalCount = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount});
+export const setPageSize = (pageSize) => ({type: SET_PAGE_SIZE, pageSize});
+export const setCategory = (category) => ({type: SET_CATEGORY, category});
 
 export default mainReducer;

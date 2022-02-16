@@ -3,7 +3,8 @@ const SET_SOURCES = 'SET-SOURCES';
 
 let initialState = {
     sources: [],
-    categories: []
+    categories: [],
+    pageSizeOptions: [{value: 10, label: 10}, {value: 20, label: 20}, {value: 50, label: 50}]
 }
 
 const categoryReducer = (state = initialState, action) => {

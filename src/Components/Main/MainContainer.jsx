@@ -6,7 +6,7 @@ import {setData, setCurrentPageNum, setTotalCount} from "../../redux/main-redux"
 
 class MainContainer extends React.Component {
     componentDidMount() {
-        axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=${this.props.pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
+        axios.get(`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&pageSize=${this.props.pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
                 console.log(response.data);
                 this.props.setData(response.data.articles);
@@ -22,7 +22,7 @@ class MainContainer extends React.Component {
 
     onPageChanged = (page) => {
         this.props.setCurrentPageNum(page);
-        axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=${this.props.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_API_KEY}`)
+        axios.get(`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&pageSize=${this.props.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
                 console.log(response.data);
                 this.props.setData(response.data.articles);
@@ -47,6 +47,7 @@ const mapStateToProps = (state) => {
         pageNum: state.mainPage.pageNum,
         country: state.mainPage.country,
         totalCount: state.mainPage.totalCount,
+        category: state.mainPage.category
     }
 }
 

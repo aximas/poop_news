@@ -1,3 +1,12 @@
-.page-size {
+.page-size-select {
   width: 140px;
+
+   &-wrapper {
+    margin-left: auto;
+    margin-bottom: 24px;
+   }
+
+  &-title {
+    margin-right: 8px;
+  }
 }

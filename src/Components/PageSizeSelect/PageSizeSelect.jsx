@@ -1,20 +1,18 @@
 import React from "react";
 import Select from "react-select";
-import "./PageSelect.scss"
+import "./PageSizeSelect.scss"
+import {useLocation} from "react-router-dom";
 
-const PageSelect = () => {
+const PageSizeSelect = (props) => {
 
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-    ]
+    const {pathname} = useLocation();
 
-    const MyComponent = () => (
-        <Select options={options} onChange={(e) => console.log(e.value)} className="page-size" />
-    )
-
-    return MyComponent()
+    return <div className="page-size-select-wrapper d-flex d-flex-y-center">
+        <h4 className="page-size-select-title">Per news in page</h4>
+        <Select options={props.pageSizeOptions} defaultValue={props.pageSizeOptions[0]} onChange={(e) => {
+            (pathname === '/') ? props.onPageSizeChanged(e.value, true) : props.onPageSizeChanged(e.value, false);
+        }} className="page-size-select"/>
+    </div>
 }
 
-export default PageSelect
+export default PageSizeSelect

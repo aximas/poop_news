@@ -1,0 +1,46 @@
+.popup-overlay {
+  background-color: rgba(0,0,0, .9);
+}
+
+.modal {
+  max-width: 670px;
+  padding: 10px 18px;
+  font-size: 12px;
+  background-color: rgb(36,77,209, .8);
+  color: #f5f5f5;
+
+  &-post-thumbnail {
+    width: 100%;
+  }
+}
+.modal > .header {
+  width: 100%;
+  border-bottom: 1px solid gray;
+  font-size: 18px;
+  text-align: center;
+  padding: 5px;
+  margin-bottom: 24px;
+}
+.modal > .content {
+  width: 100%;
+  padding: 10px 5px;
+}
+.modal > .actions {
+  width: 100%;
+  padding: 10px 5px;
+  margin: auto;
+  text-align: center;
+}
+.modal > .close {
+  cursor: pointer;
+  position: absolute;
+  display: block;
+  padding: 2px 5px;
+  line-height: 20px;
+  right: -10px;
+  top: -10px;
+  font-size: 24px;
+  background: #ffffff;
+  border-radius: 18px;
+  border: 1px solid #cfcece;
+}
