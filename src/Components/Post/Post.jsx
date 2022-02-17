@@ -11,7 +11,7 @@ const Post = (props) => {
         )
     }
     const post = props.posts.map((post, i) => {
-        return <article className={`d-flex d-flex-d-column post ${props.classNameChanger([0, 1, 5, 6], i)('post-large')}`} key={i}>
+        return <article className={`d-flex d-flex-d-column post`} key={i}>
             <PopUpNews {...post}>
                 {post.title}
             </PopUpNews>
@@ -20,7 +20,7 @@ const Post = (props) => {
                     {post.description}
                 </p>
             </div>
-            <img src={post.urlToImage ?? imgPlaceholder} alt={post.title} className={`post-thumbnail ${props.classNameChanger([0, 1, 5, 6], i)('post-thumbnail-large')}`}/>
+            <img src={post.urlToImage ?? imgPlaceholder} alt={post.title} className={`post-thumbnail`}/>
             <div className="post-footer">
                 <span className="post-footer-info post-author">
                     {post.author ? post.author + " - " : null}

@@ -3,6 +3,7 @@ const SET_CURRENT_PAGE_NUM = 'SET-PAGE-NUM';
 const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
 const SET_PAGE_SIZE = 'SET-PAGE-SIZE';
 const SET_CATEGORY = 'SET-CATEGORY';
+const SET_SEARCH_QUERY = 'SET-SEARCH-QUERY';
 
 let initialState = {
     data: null,
@@ -10,7 +11,8 @@ let initialState = {
     pageNum: 1,
     totalCount: 0,
     country: 'us',
-    category: 'general'
+    category: 'general',
+    searchQuery: ''
 }
 
 const mainReducer = (state = initialState, action) => {
@@ -35,6 +37,10 @@ const mainReducer = (state = initialState, action) => {
             return {
                 ...state, category: action.category
             }
+        case SET_SEARCH_QUERY:
+            return {
+                ...state, searchQuery: action.searchQuery
+            }
         default: {
             return state
         }
@@ -46,5 +52,6 @@ export const setCurrentPageNum = (pageNum) => ({type: SET_CURRENT_PAGE_NUM, page
 export const setTotalCount = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount});
 export const setPageSize = (pageSize) => ({type: SET_PAGE_SIZE, pageSize});
 export const setCategory = (category) => ({type: SET_CATEGORY, category});
+export const setSearchQuery = (searchQuery) => ({type: SET_SEARCH_QUERY, searchQuery});
 
 export default mainReducer;

@@ -3,14 +3,14 @@ import "./Header.scss";
 import logoSrc from "../../files/img/logo.png";
 import {useLocation} from "react-router-dom";
 import PopUpNews from "../PopUp/PopUp";
+import {useParams} from "react-router";
 
 const Header = (props) => {
 
     const {pathname} = useLocation();
-
     const category = props.categories.map((category, i) => (
              <li className="menu-item" key={i}> {/*// about ket attr, yes I know, it isn't right, but in this case it doesn't matter*/}
-                <span className={`menu-item-link ${props.category === category ? "menu-item-link-current" : ""} `} onClick={() => {
+                <span className={`menu-item-link${props.category === category ? " menu-item-link-current" : ""}`} onClick={() => {
                     console.log(category);
                     if(props.category !== category) {
                         props.onCategoryChange(category)
@@ -30,7 +30,7 @@ const Header = (props) => {
             <ul className="menu-upper-bar upper-menu d-flex">
                 <li className="upper-menu-item">
                     <a href="/everything" className="upper-menu-item-link">
-                        Everything
+                        All news
                     </a>
                 </li>
                 <li className="upper-menu-item">

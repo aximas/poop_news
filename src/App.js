@@ -1,19 +1,22 @@
 import React from "react";
 import './App.scss';
 import MainContainer from "./Components/Main/MainContainer";
-import {Route} from "react-router-dom";
-import {Routes} from "react-router";
+import {Route, Routes} from "react-router-dom";
 import HeaderContainer from "./Components/Header/HeaderContainer";
 import NewsContainer from "./Components/News/NewsContainer";
+import SearchPageContainer from "./Components/SearchPage/SearchPageContainer";
+import ErrorPage from "./Components/ErrorPage/ErrorPage";
 
 function App() {
     return (
         <div className="app">
-            <HeaderContainer />
+            <HeaderContainer/>
             <div className="main-wrapper">
                 <Routes>
-                    <Route path='/' element={<MainContainer />}/>
-                    <Route path='/everything' element={<NewsContainer />}/>
+                    <Route path='/' element={<MainContainer/>}/>
+                    <Route path='/everything' element={<NewsContainer/>}/>
+                    <Route path='/search/:searchQueryId/*' element={<SearchPageContainer />} />
+                    <Route path='*' element={<ErrorPage />} />
                 </Routes>
 
             </div>

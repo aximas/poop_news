@@ -56,4 +56,20 @@
   &-published-date {
     margin-right: 8px;
   }
+
+  &:nth-child(1) {
+    width: 49%;
+  }
+
+  &:nth-child(2) {
+    width: 49%;
+  }
+
+  &:nth-child(5n+1) {
+    width: 49%;
+  }
+
+  &:nth-child(5n+2) {
+    width: 49%;
+  }
 }

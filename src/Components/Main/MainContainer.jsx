@@ -29,6 +29,14 @@ class MainContainer extends React.Component {
             });
     }
 
+    // onSearchInput = (searchQuery) => {
+    //     axios.get(`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&pageSize=${this.props.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_API_KEY}`)
+    //         .then(response => {
+    //             console.log(response.data);
+    //             this.props.setData(response.data.articles);
+    //         });
+    // }
+
     render() {
         return <Main data={this.props.data}
                      classNameChanger={this.classNameChanger}
