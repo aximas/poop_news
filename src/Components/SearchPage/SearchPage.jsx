@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import Post from "../Post/Post";
 import {useParams} from "react-router";
 import Pagination from "../Pagination/Pagination";
