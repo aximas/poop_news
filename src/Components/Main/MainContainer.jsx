@@ -8,34 +8,18 @@ class MainContainer extends React.Component {
     componentDidMount() {
         axios.get(`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&pageSize=${this.props.pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
-                console.log(response.data);
                 this.props.setData(response.data.articles);
                 this.props.setTotalCount(response.data.totalResults);
             });
-    }
-
-    classNameChanger = (keys, key) => {
-        return function (selector) {
-            return (keys.length > 0 && keys.includes(key)) ? selector : '';
-        }
     }
 
     onPageChanged = (page) => {
         this.props.setCurrentPageNum(page);
         axios.get(`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&pageSize=${this.props.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
-                console.log(response.data);
                 this.props.setData(response.data.articles);
             });
     }
-
-    // onSearchInput = (searchQuery) => {
-    //     axios.get(`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&pageSize=${this.props.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_API_KEY}`)
-    //         .then(response => {
-    //             console.log(response.data);
-    //             this.props.setData(response.data.articles);
-    //         });
-    // }
 
     render() {
         return <Main data={this.props.data}

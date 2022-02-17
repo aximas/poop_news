@@ -2,7 +2,6 @@ import React, {useState} from "react";
 import Post from "../Post/Post";
 import {useParams} from "react-router";
 import Pagination from "../Pagination/Pagination";
-import SearchContainer from "../Search/SearchContainer";
 
 const SearchPage = (props) => {
 

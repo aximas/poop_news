@@ -16,14 +16,12 @@ class PageSizeSelectContainer extends React.Component {
         if (isEndpointTopHeadLines) {
             axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=${pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
                 .then(response => {
-                    console.log(response.data);
                     this.props.setData(response.data.articles);
                 });
         }
         else {
             axios.get(`https://newsapi.org/v2/everything?sources=CNN,ABC,WDRB,daily&language=en&pageSize=${pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
                 .then(response => {
-                    console.log(response.data);
                     this.props.setData(response.data.articles);
                 });
         }

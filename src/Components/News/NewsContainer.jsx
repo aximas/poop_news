@@ -8,7 +8,6 @@ class NewsContainer extends React.Component {
     componentDidMount() {
         axios.get(`https://newsapi.org/v2/everything?sources=CNN,ABC,WDRB,daily&language=en&pageSize=${this.props.pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
-                console.log(response.data);
                 this.props.setData(response.data.articles);
                 this.props.setTotalCount(response.data.totalResults);
             });
@@ -24,7 +23,6 @@ class NewsContainer extends React.Component {
         this.props.setCurrentPageNum(page);
         axios.get(`https://newsapi.org/v2/everything?sources=CNN,ABC,WDRB,daily&language=en&pageSize=${this.props.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
-                console.log(response.data);
                 this.props.setData(response.data.articles);
             });
     }

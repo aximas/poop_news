@@ -2,14 +2,13 @@ import React from "react";
 import SearchPage from "./SearchPage";
 import axios from "axios";
 import {setCurrentPageNum, setData, setSearchQuery, setTotalCount} from "../../redux/main-redux";
-import {connect, Provider} from "react-redux";
+import {connect} from "react-redux";
 
 class SearchPageContainer extends React.Component {
 
     componentDidMount() {
         axios.get(`https://newsapi.org/v2/top-headlines?q=${this.props.searchQuery}&pageSize=${this.props.pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
-                console.log(response.data.articles);
                 this.props.setData(response.data.articles);
                 this.props.setTotalCount(response.data.totalResults);
             })
@@ -19,7 +18,6 @@ class SearchPageContainer extends React.Component {
         this.props.setCurrentPageNum(page);
         axios.get(`https://newsapi.org/v2/top-headlines?q=${this.props.searchQuery}&pageSize=${this.props.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
-                console.log(response.data);
                 this.props.setData(response.data.articles);
             });
     }

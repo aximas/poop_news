@@ -15,7 +15,6 @@ class HeaderContainer extends React.Component {
     componentDidMount() {
         axios.get(`https://newsapi.org/v2/top-headlines/sources?apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
-                console.log(response.data.sources);
                 this.props.setSources(response.data.sources);
                 this.props.setCategories([...new Set(this.getCategories(response.data.sources))]);
             })
@@ -29,7 +28,6 @@ class HeaderContainer extends React.Component {
         this.props.setCategory(category);
         axios.get(`https://newsapi.org/v2/top-headlines?category=${category}&country=us&pageSize=${this.props.pageSize}&page=1&apiKey=${process.env.REACT_APP_API_KEY}`)
             .then(response => {
-                console.log(response.data.articles);
                 this.props.setData(response.data.articles);
                 this.props.setTotalCount(response.data.totalResults);
                 this.props.setCurrentPageNum(1);
