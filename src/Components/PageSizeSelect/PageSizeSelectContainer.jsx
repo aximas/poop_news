@@ -1,8 +1,8 @@
 import React from "react";
 import {connect} from "react-redux";
 import PageSizeSelect from "./PageSizeSelect";
-import axios from "axios";
 import {setData, setPageSize} from "../../redux/main-redux";
+import newsApi from "../../api/api";
 
 class PageSizeSelectContainer extends React.Component {
 
@@ -14,15 +14,15 @@ class PageSizeSelectContainer extends React.Component {
     onPageSizeChanged(pageSize, isEndpointTopHeadLines) {
         this.props.setPageSize(pageSize);
         if (isEndpointTopHeadLines) {
-            axios.get(`https://newsapi.org/v2/top-headlines?country=us&pageSize=${pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
+            newsApi.getTopNews(this.props.category, pageSize, this.props.pageNum)
                 .then(response => {
-                    this.props.setData(response.data.articles);
+                    this.props.setData(response.articles);
                 });
         }
         else {
-            axios.get(`https://newsapi.org/v2/everything?sources=CNN,ABC,WDRB,daily&language=en&pageSize=${pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
+            newsApi.getEveryNews(pageSize, this.props.pageNum)
                 .then(response => {
-                    this.props.setData(response.data.articles);
+                    this.props.setData(response.articles);
                 });
         }
     }

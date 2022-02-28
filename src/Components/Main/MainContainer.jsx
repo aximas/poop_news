@@ -1,23 +1,24 @@
 import React from "react";
 import {connect} from "react-redux";
-import axios from "axios";
 import Main from "./Main";
 import {setData, setCurrentPageNum, setTotalCount} from "../../redux/main-redux";
+import newsApi from "../../api/api";
 
 class MainContainer extends React.Component {
     componentDidMount() {
-        axios.get(`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&pageSize=${this.props.pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
+        newsApi.getTopNews(this.props.category, this.props.pageSize, this.props.pageNum)
             .then(response => {
-                this.props.setData(response.data.articles);
-                this.props.setTotalCount(response.data.totalResults);
+                console.log(response.articles);
+                this.props.setData(response.articles);
+                this.props.setTotalCount(response.totalResults);
             });
     }
 
     onPageChanged = (page) => {
         this.props.setCurrentPageNum(page);
-        axios.get(`https://newsapi.org/v2/top-headlines?category=${this.props.category}&country=us&pageSize=${this.props.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_API_KEY}`)
+        newsApi.getTopNews(this.props.category, this.props.pageSize, page)
             .then(response => {
-                this.props.setData(response.data.articles);
+                this.props.setData(response.articles);
             });
     }
 

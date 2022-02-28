@@ -1,15 +1,15 @@
 import React from "react";
 import {connect} from "react-redux";
-import axios from "axios";
 import {setData, setCurrentPageNum, setTotalCount} from "../../redux/main-redux";
 import News from "./News";
+import newsApi from "../../api/api";
 
 class NewsContainer extends React.Component {
     componentDidMount() {
-        axios.get(`https://newsapi.org/v2/everything?sources=CNN,ABC,WDRB,daily&language=en&pageSize=${this.props.pageSize}&page=${this.props.pageNum}&apiKey=${process.env.REACT_APP_API_KEY}`)
+        newsApi.getEveryNews(this.props.pageSize, this.props.pageNum)
             .then(response => {
-                this.props.setData(response.data.articles);
-                this.props.setTotalCount(response.data.totalResults);
+                this.props.setData(response.articles);
+                this.props.setTotalCount(response.totalResults);
             });
     }
 
@@ -21,9 +21,9 @@ class NewsContainer extends React.Component {
 
     onPageChanged = (page) => {
         this.props.setCurrentPageNum(page);
-        axios.get(`https://newsapi.org/v2/everything?sources=CNN,ABC,WDRB,daily&language=en&pageSize=${this.props.pageSize}&page=${page}&apiKey=${process.env.REACT_APP_API_KEY}`)
+        newsApi.getEveryNews(this.props.pageSize, page)
             .then(response => {
-                this.props.setData(response.data.articles);
+                this.props.setData(response.articles);
             });
     }
 
@@ -34,7 +34,6 @@ class NewsContainer extends React.Component {
                      totalCount={this.props.totalCount}
                      pageNum={this.props.pageNum}
                      onPageChanged={this.onPageChanged}
-                     onEndpointsChanged={this.onEndpointsChanged}
         />;
     }
 }
