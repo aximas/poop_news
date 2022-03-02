@@ -1,34 +1,17 @@
 import React from "react";
 import {connect} from "react-redux";
 import PageSizeSelect from "./PageSizeSelect";
-import {setData, setPageSize} from "../../redux/main-redux";
-import newsApi from "../../api/api";
+import {getAllNewOnPageSizeThunk} from "../../redux/main-redux";
 
 class PageSizeSelectContainer extends React.Component {
 
-    constructor(props, context) {
-        super(props, context);
-        this.onPageSizeChanged = this.onPageSizeChanged.bind(this);
-    }
-
-    onPageSizeChanged(pageSize, isEndpointTopHeadLines) {
-        this.props.setPageSize(pageSize);
-        if (isEndpointTopHeadLines) {
-            newsApi.getTopNews(this.props.category, pageSize, this.props.pageNum)
-                .then(response => {
-                    this.props.setData(response.articles);
-                });
-        }
-        else {
-            newsApi.getEveryNews(pageSize, this.props.pageNum)
-                .then(response => {
-                    this.props.setData(response.articles);
-                });
-        }
+    onPageSizeChanged = (pageSize, isEndpointTopHeadLines) => {
+        this.props.getAllNewOnPageSizeThunk(pageSize, isEndpointTopHeadLines, this.props.category, this.props.pageNum)
     }
 
     render() {
-        return <PageSizeSelect pageSizeOptions={this.props.pageSizeOptions} onPageSizeChanged={this.onPageSizeChanged} pageSize={this.props.pageSize}/>
+        return <PageSizeSelect pageSizeOptions={this.props.pageSizeOptions} onPageSizeChanged={this.onPageSizeChanged}
+                               pageSize={this.props.pageSize}/>
     }
 }
 
@@ -40,4 +23,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setData, setPageSize})(PageSizeSelectContainer)
+export default connect(mapStateToProps, {getAllNewOnPageSizeThunk})(PageSizeSelectContainer)

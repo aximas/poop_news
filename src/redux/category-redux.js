@@ -1,3 +1,5 @@
+import newsApi from "../api/api";
+
 const SET_CATEGORIES = 'SET-CATEGORIES';
 const SET_SOURCES = 'SET-SOURCES';
 
@@ -24,5 +26,16 @@ const categoryReducer = (state = initialState, action) => {
 
 export const setSources = (sources) => ({type: SET_SOURCES, sources})
 export const setCategories = (categories) => ({type: SET_CATEGORIES, categories})
+
+export const setSourcesThunk = () => (dispatch) => {
+    const getCategories = (sources) => {
+        return sources.map((item) => item.category);
+    }
+    return newsApi.getSources()
+        .then(response => {
+            dispatch(setSources(response.sources));
+            dispatch(setCategories([...new Set(getCategories(response.sources))]));
+        })
+}
 
 export default categoryReducer;

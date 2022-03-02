@@ -1,3 +1,5 @@
+import newsApi from "../api/api";
+
 const SET_DATA = 'SET-DATA';
 const SET_CURRENT_PAGE_NUM = 'SET-PAGE-NUM';
 const SET_TOTAL_COUNT = 'SET-TOTAL-COUNT';
@@ -53,5 +55,80 @@ export const setTotalCount = (totalCount) => ({type: SET_TOTAL_COUNT, totalCount
 export const setPageSize = (pageSize) => ({type: SET_PAGE_SIZE, pageSize});
 export const setCategory = (category) => ({type: SET_CATEGORY, category});
 export const setSearchQuery = (searchQuery) => ({type: SET_SEARCH_QUERY, searchQuery});
+
+export const getTopNewsThunk = () => (dispatch) => {
+    return newsApi.getTopNews()
+        .then(response => {
+            console.log(response.articles);
+            dispatch(setData(response.articles));
+            dispatch(setTotalCount(response.totalResults));
+        });
+}
+
+export const getTopNewsOnPageThunk = (category, pageSize, page) => (dispatch) => {
+    dispatch(setCurrentPageNum(page));
+    return newsApi.getTopNews(category, pageSize, page)
+        .then(response => {
+            dispatch(setData(response.articles));
+        });
+}
+
+export const setSourceOnCategoryChangeThunk = (category, pageSize) => (dispatch) => {
+    dispatch(setCategory(category));
+    newsApi.getTopNews(category, pageSize, 1)
+        .then(response => {
+            dispatch(setData(response.articles));
+            dispatch(setTotalCount(response.totalResults));
+            dispatch(setCurrentPageNum(1));
+        })
+}
+
+export const getEveryNewsThunk = () => (dispatch) => {
+    newsApi.getEveryNews()
+        .then(response => {
+            dispatch(setData(response.articles));
+            dispatch(setTotalCount(response.totalResults));
+        });
+}
+
+export const getEveryNewsOnPageThunk = (page, pageSize) => (dispatch) => {
+    dispatch(setCurrentPageNum(page));
+    newsApi.getEveryNews(pageSize, page)
+        .then(response => {
+            dispatch(setData(response.articles));
+        });
+}
+
+export const getTopNewsOnSearchThunk = (searchQuery) => (dispatch) => {
+    newsApi.getTopNewsSearch(searchQuery)
+        .then(response => {
+            dispatch(setData(response.articles));
+            dispatch(setTotalCount(response.totalResults));
+        })
+}
+
+export const getTopNewsOnSearchOnPageThunk = (searchQuery, pageSize, page) => (dispatch) => {
+    dispatch(setCurrentPageNum(page));
+    newsApi.getTopNewsSearch(searchQuery, pageSize, page)
+        .then(response => {
+            dispatch(setData(response.articles));
+        });
+}
+
+export const getAllNewOnPageSizeThunk = (pageSize, isEndpointTopHeadLines, category, pageNum) => (dispatch) => {
+    dispatch(setPageSize(pageSize));
+    if (isEndpointTopHeadLines) {
+        newsApi.getTopNews(category, pageSize, pageNum)
+            .then(response => {
+                dispatch(setData(response.articles));
+            });
+    }
+    else {
+        newsApi.getEveryNews(pageSize, pageNum)
+            .then(response => {
+                dispatch(setData(response.articles));
+            });
+    }
+}
 
 export default mainReducer;

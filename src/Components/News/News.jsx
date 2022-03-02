@@ -8,7 +8,7 @@ const News = (props) => {
         <div className="widgets-wrapper d-flex">
             <PageSizeSelectContainer/>
         </div>
-        <Post posts={props.data} classNameChanger={props.classNameChanger}/>
+        <Post posts={props.data} />
         <Pagination totalCount={props.totalCount}
                     pageSize={props.pageSize}
                     pageNum={props.pageNum}

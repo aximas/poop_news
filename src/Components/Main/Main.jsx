@@ -7,16 +7,16 @@ import SearchContainer from "../Search/SearchContainer";
 const Main = (props) => {
 
     return <main className="main d-flex d-flex-d-column">
-            <div className="widgets-wrapper d-flex">
-                <SearchContainer />
-                <PageSizeSelectContainer />
-            </div>
-            <Post posts={props.data} classNameChanger={props.classNameChanger} />
-            <Pagination totalCount={props.totalCount}
-                        pageSize={props.pageSize}
-                        pageNum={props.pageNum}
-                        onPageChanged={props.onPageChanged}
-                        />
+        <div className="widgets-wrapper d-flex">
+            <SearchContainer/>
+            <PageSizeSelectContainer/>
+        </div>
+        <Post posts={props.data}/>
+        <Pagination totalCount={props.totalCount}
+                    pageSize={props.pageSize}
+                    pageNum={props.pageNum}
+                    onPageChanged={props.onPageChanged}
+        />
     </main>
 }
 

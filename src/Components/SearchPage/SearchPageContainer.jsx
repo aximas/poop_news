@@ -1,25 +1,18 @@
 import React from "react";
 import SearchPage from "./SearchPage";
-import {setCurrentPageNum, setData, setSearchQuery, setTotalCount} from "../../redux/main-redux";
+import {
+    getTopNewsOnSearchOnPageThunk,
+    getTopNewsOnSearchThunk, setSearchQuery
+} from "../../redux/main-redux";
 import {connect} from "react-redux";
-import newsApi from "../../api/api";
 
 class SearchPageContainer extends React.Component {
-
     componentDidMount() {
-        newsApi.getTopNewsSearch(this.props.searchQuery, this.props.pageSize, this.props.pageNum)
-            .then(response => {
-                this.props.setData(response.articles);
-                this.props.setTotalCount(response.totalResults);
-            })
+        this.props.getTopNewsOnSearchThunk(this.props.searchQuery);
     }
 
     onPageChanged = (page) => {
-        this.props.setCurrentPageNum(page);
-        newsApi.getTopNewsSearch(this.props.searchQuery, this.props.pageSize, page)
-            .then(response => {
-                this.props.setData(response.articles);
-            });
+        this.props.getTopNewsOnSearchOnPageThunk(this.props.searchQuery, this.props.pageSize, page);
     }
 
     render() {
@@ -37,4 +30,8 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps, {setData, setSearchQuery, setTotalCount, setCurrentPageNum})(SearchPageContainer)
+export default connect(mapStateToProps, {
+    setSearchQuery,
+    getTopNewsOnSearchThunk,
+    getTopNewsOnSearchOnPageThunk
+})(SearchPageContainer)
