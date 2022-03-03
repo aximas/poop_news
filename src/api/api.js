@@ -1,7 +1,10 @@
 import * as axios from "axios";
 
+const baseURLFromLocalhost = 'http://localhost/test-to-fetch/';
+const baseURLFromWeb = 'http://wwbuilder.byethost15.com/newsapi/';
+
 const instance = axios.create({
-    baseURL: 'http://localhost/test-to-fetch/',
+    baseURL: baseURLFromWeb,
     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 });
 
