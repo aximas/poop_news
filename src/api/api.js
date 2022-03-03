@@ -1,7 +1,7 @@
 import * as axios from "axios";
 
 const baseURLFromLocalhost = 'http://localhost/test-to-fetch/';
-const baseURLFromWeb = 'http://wwbuilder.byethost15.com/newsapi/';
+const baseURLFromWeb = 'https://poop-news.vercel.app/rest/';
 
 const instance = axios.create({
     baseURL: baseURLFromWeb,
