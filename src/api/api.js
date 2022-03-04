@@ -1,6 +1,6 @@
 import * as axios from "axios";
 
-const baseURLFromLocalhost = 'http://localhost/test-to-fetch/';
+// const baseURLFromLocalhost = 'http://localhost/test-to-fetch/';
 const baseURLFromWeb = 'https://aximasnewsapi.herokuapp.com/';
 
 const instance = axios.create({
