@@ -4,7 +4,7 @@ import * as axios from "axios";
 const baseURLFromWeb = 'https://aximasnewsapi.herokuapp.com/';
 
 const instance = axios.create({
-    baseURL: baseURLFromLocalhost,
+    baseURL: baseURLFromWeb,
     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 });
 
