@@ -4,7 +4,7 @@ const baseURLFromLocalhost = 'http://localhost/test-to-fetch/';
 const baseURLFromWeb = 'https://aximasnewsapi.herokuapp.com/';
 
 const instance = axios.create({
-    baseURL: baseURLFromWeb,
+    baseURL: baseURLFromLocalhost,
     headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 });
 
