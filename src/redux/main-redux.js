@@ -59,7 +59,6 @@ export const setSearchQuery = (searchQuery) => ({type: SET_SEARCH_QUERY, searchQ
 export const getTopNewsThunk = () => (dispatch) => {
     return newsApi.getTopNews()
         .then(response => {
-            console.log(response.articles);
             dispatch(setData(response.articles));
             dispatch(setTotalCount(response.totalResults));
         });
