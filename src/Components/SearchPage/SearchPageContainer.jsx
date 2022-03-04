@@ -1,23 +1,25 @@
-import React from "react";
+import React, {useEffect} from "react";
 import SearchPage from "./SearchPage";
 import {
     getTopNewsOnSearchOnPageThunk,
     getTopNewsOnSearchThunk, setSearchQuery
 } from "../../redux/main-redux";
 import {connect} from "react-redux";
+import {useParams} from "react-router";
 
-class SearchPageContainer extends React.Component {
-    componentDidMount() {
-        this.props.getTopNewsOnSearchThunk(this.props.searchQuery);
+const SearchPageContainer = (props) => {
+
+    const {searchQueryId} = useParams();
+    useEffect(() => {
+        props.setSearchQuery(searchQueryId);
+        props.getTopNewsOnSearchThunk(searchQueryId);
+    }, [searchQueryId]);
+
+    const onPageChanged = (page) => {
+        props.getTopNewsOnSearchOnPageThunk(props.searchQuery, props.pageSize, page);
     }
 
-    onPageChanged = (page) => {
-        this.props.getTopNewsOnSearchOnPageThunk(this.props.searchQuery, this.props.pageSize, page);
-    }
-
-    render() {
-        return <SearchPage {...this.props} onPageChanged={this.onPageChanged}/>
-    }
+    return <SearchPage {...props} onPageChanged={onPageChanged}/>
 }
 
 const mapStateToProps = (state) => {
