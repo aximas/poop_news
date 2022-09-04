@@ -20,20 +20,20 @@ const Post = (props) => {
                     {post.description}
                 </p>
             </div>
-            <img src={post.urlToImage ?? imgPlaceholder} alt={post.title} className={`post-thumbnail`}/>
+            <img src={post.image_url ?? imgPlaceholder} alt={post.title} className={`post-thumbnail`}/>
             <div className="post-footer">
                 <span className="post-footer-info post-author">
                     {post.author ? post.author + " - " : null}
                 </span>
                 <span className="post-footer-info post-source">
-                   "{post.source.name}"
+                   "{post.source_id}"
                 </span>
                 <span className="post-footer-info post-delimiter">
                    /
                 </span>
                 <span className="post-footer-info post-published-data">
-                    <time className="post-published-date" dateTime={post.publishedAt}>{post.publishedAt.split('T')[0]}</time>
-                    <time className="post-published-time" dateTime={post.publishedAt}>{post.publishedAt.split('T')[1].slice(0, post.publishedAt.split('T')[1].lastIndexOf('Z'))}</time>
+                    <time className="post-published-date" dateTime={post.pubDate}>{post.pubDate.split(' ')[0]}</time>
+                    <time className="post-published-time" dateTime={post.pubDate}>{post.pubDate.split(' ')[1]}</time>
                 </span>
             </div>
         </article>

@@ -14,7 +14,7 @@ const PopUpNews = (props) => {
                 <div className="content">
                     {' '}
                     {props.content ?? props.description}
-                    <img src={props.urlToImage ?? imgPlaceholder} alt="post-thumbnail" className="modal-post-thumbnail"/>
+                    <img src={props.image_url ?? imgPlaceholder} alt="post-thumbnail" className="modal-post-thumbnail"/>
                 </div>
             </div>
         )}

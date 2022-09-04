@@ -1,16 +1,16 @@
 import * as axios from "axios";
 
-// const baseURLFromLocalhost = 'http://localhost/test-to-fetch/';
+const baseURLFromLocalhost = 'http://localhost:4000/api/v1/news';
 const baseURLFromWeb = 'https://aximasnewsapi.herokuapp.com/';
 
 const instance = axios.create({
-    baseURL: baseURLFromWeb,
-    headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+    baseURL: baseURLFromLocalhost,
+    headers: {'Content-Type': 'application/json'}
 });
 
 const newsApi = {
     getTopNews: (category = 'general', pageSize = 10, pageNum = 1) => {
-        return instance.get(`?action=rpn&type=top-news&category=${category}&country=us&pageSize=${pageSize}&page=${pageNum}`)
+        return instance.get()
             .then(response => response.data)
     },
     getEveryNews: (pageSize = 10, pageNum = 1, sources = 'cnn') => {

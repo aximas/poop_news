@@ -9,12 +9,12 @@ import {
 class MainContainer extends React.Component {
     componentDidMount() {
         this.props.getTopNewsThunk();
+        console.log(this.props)
     }
 
     onPageChanged = (page) => {
         this.props.getTopNewsOnPageThunk(this.props.category, this.props.pageSize, page);
     }
-
     render() {
         return <Main data={this.props.data}
                      pageSize={this.props.pageSize}

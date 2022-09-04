@@ -59,7 +59,8 @@ export const setSearchQuery = (searchQuery) => ({type: SET_SEARCH_QUERY, searchQ
 export const getTopNewsThunk = () => (dispatch) => {
     return newsApi.getTopNews()
         .then(response => {
-            dispatch(setData(response.articles));
+            console.log('response.results', response.results);
+            dispatch(setData(response.results));
             dispatch(setTotalCount(response.totalResults));
         });
 }
@@ -85,7 +86,7 @@ export const setSourceOnCategoryChangeThunk = (category, pageSize) => (dispatch)
 export const getEveryNewsThunk = () => (dispatch) => {
     newsApi.getEveryNews()
         .then(response => {
-            dispatch(setData(response.articles));
+            dispatch(setData(response.results));
             dispatch(setTotalCount(response.totalResults));
         });
 }
