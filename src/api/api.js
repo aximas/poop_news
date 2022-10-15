@@ -1,16 +1,16 @@
 import * as axios from "axios";
 
-const baseURLFromLocalhost = 'http://localhost:4000/api/v1/news';
-const baseURLFromWeb = 'https://aximasnewsapi.herokuapp.com/';
+// const baseURLFromLocalhost = 'http://localhost:4000/api/v1/';
+const baseURLFromWeb = 'https://murmuring-sierra-54875.herokuapp.com/api/v1/';
 
 const instance = axios.create({
-    baseURL: baseURLFromLocalhost,
+    baseURL: baseURLFromWeb,
     headers: {'Content-Type': 'application/json'}
 });
 
 const newsApi = {
     getTopNews: (category = 'general', pageSize = 10, pageNum = 1) => {
-        return instance.get()
+        return instance.get(`news`)
             .then(response => response.data)
     },
     getEveryNews: (pageSize = 10, pageNum = 1, sources = 'cnn') => {
@@ -18,7 +18,7 @@ const newsApi = {
             .then(response => response.data)
     },
     getSources: () => {
-        return instance.get(`?action=rpn&type=sources`)
+        return instance.get(`sources`)
             .then(response => response.data)
     },
     getTopNewsSearch: (searchQuery, pageSize = 10, pageNum = 1) => {
